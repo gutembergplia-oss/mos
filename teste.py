@@ -9,7 +9,7 @@ st.caption("Filtros por MOS | Unidade | MSI")
 # =========================
 # LEITURA DO EXCEL
 # =========================
-df = pd.read_excel(ESTUDANTES_.xlsx")
+df = pd.read_excel("ESTUDANTES_.xlsx")
 )
 
 df.columns = df.columns.str.strip()
@@ -101,4 +101,5 @@ st.dataframe(
     }),
     use_container_width=True
 )
+
 
