@@ -12,10 +12,9 @@ st.caption("Filtros por MOS | Unidade | MSI")
 # =========================
 # LEITURA DO EXCEL
 # =========================
-df = pd.read_excel(
-    r"C:\Users\ss1057289\OneDrive - SESISENAISP - Corporativo\Arquivos uteis\Sistema_Robótica\ESTUDANTES_.xlsx"
-)
+df = pd.read_excel("ESTUDANTES_.xlsx")
 
+# Remove espaços extras dos nomes das colunas
 df.columns = df.columns.str.strip()
 
 # =========================
@@ -27,7 +26,7 @@ col_unidade = "Unidade"
 col_gmetrix = "GMetrix"
 
 # =========================
-# VALIDAÇÃO
+# VALIDAÇÃO DE COLUNAS
 # =========================
 colunas_necessarias = [col_origem, col_msi, col_unidade, col_gmetrix]
 faltando = [c for c in colunas_necessarias if c not in df.columns]
@@ -56,7 +55,7 @@ df[col_msi] = pd.to_numeric(df[col_msi], errors="coerce")
 # =========================
 df[col_gmetrix] = (
     df[col_gmetrix]
-    .fillna("-")           # NaN vira "-"
+    .fillna("-")      # NaN vira "-"
     .astype(str)
     .str.strip()
 )
