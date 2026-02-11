@@ -55,7 +55,7 @@ df[col_msi] = pd.to_numeric(df[col_msi], errors="coerce")
 # =========================
 df[col_gmetrix] = (
     df[col_gmetrix]
-    .fillna("-")      # NaN vira "-"
+    .fillna("-")
     .astype(str)
     .str.strip()
 )
@@ -98,9 +98,15 @@ else:
 # =========================
 # MÉTRICAS
 # =========================
+# Contagem de Liberados (ignora maiúsculo/minúsculo)
+total_liberados = df_filtro[
+    df_filtro[col_gmetrix].str.lower() == "liberado"
+].shape[0]
+
 col1, col2, col3 = st.columns(3)
 
 col1.metric("👩‍🎓 Total de Estudantes", len(df_filtro))
+col2.metric("✅ GMetrix Liberado", total_liberados)
 col3.metric("📈 MSI Médio", round(df_filtro[col_msi].mean(), 2))
 
 # =========================
